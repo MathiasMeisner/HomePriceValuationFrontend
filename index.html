@@ -17,13 +17,8 @@
     <div id="app">
         <h2>Test - Price Tool</h2>
 
-        <button @click="municipalityId=1" v-on:click="getTotalHomesForSale(municipalityId);getAvgSquarePrice(municipalityId)" class="btn btn-primary">Frederiksberg</button>
-        <button @click="municipalityId=2" v-on:click="getTotalHomesForSale(municipalityId);getAvgSquarePrice(municipalityId)" class ="btn btn-primary">Roskilde</button>
-
-        <div class="textblock">      
-            <p>{{totalHomesForSale}}</p>
-            <p>Boliger til salg i kommunnen</p>
-        </div>
+        <button @click="municipalityId=1" v-on:click="getAvgSquarePrice(municipalityId)" class="btn btn-primary">Frederiksberg</button>
+        <button @click="municipalityId=2" v-on:click="getAvgSquarePrice(municipalityId)" class ="btn btn-primary">Roskilde</button>
 
         <div class="textblock">      
             <p>{{avgSquarePrice}}</p>

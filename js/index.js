@@ -8,13 +8,10 @@ Vue.createApp({
       id: 0,
       municipalityId: 0,
       squarePrice: "",
-      isOpen: null,
       price: 0,
       kvm: 0,
-      daysForSale: 0,
       errormessage: "",
       singleHome: null,
-      totalHomesForSale: "",
       avgSquarePrice: "",
     };
   },
@@ -63,17 +60,6 @@ Vue.createApp({
       try {
         response = await axios.get(url);
         this.singleHome = await response.data;
-      } catch {
-        alert(this.errormessage);
-      }
-    },
-
-    async getTotalHomesForSale(municipalityId) {
-      try {
-        const url =
-          baseUrl + "municipality/totalhomesforsale" + "/" + municipalityId;
-        response = await axios.get(url);
-        this.totalHomesForSale = await response.data;
       } catch {
         alert(this.errormessage);
       }
