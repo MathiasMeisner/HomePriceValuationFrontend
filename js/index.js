@@ -1,4 +1,4 @@
-const baseUrl = "https://pricevaluation.azurewebsites.net/";
+const baseUrl = "https://homepricevaluation.azurewebsites.net/";
 // https://localhost:44376/
 
 Vue.createApp({
@@ -67,7 +67,7 @@ Vue.createApp({
 
     async getAvgSquarePrice(municipalityId) {
       const url = baseUrl + "municipality/avgkvmprice" + "/" + municipalityId;
-      this.errormessage = "So price data";
+      this.errormessage = "No price data";
       try {
         response = await axios.get(url);
         this.avgSquarePrice = await response.data;
