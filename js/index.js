@@ -13,6 +13,7 @@ Vue.createApp({
       errormessage: "",
       singleHome: null,
       avgSquarePrice: "",
+      calculatedPrice: 0,
     };
   },
 
@@ -71,6 +72,15 @@ Vue.createApp({
       try {
         response = await axios.get(url);
         this.avgSquarePrice = await response.data;
+      } catch {
+        alert(this.errormessage);
+      }
+    },
+
+    async calculatePrice() {
+      this.errormessage = "No price data";
+      try {
+        this.calculatedPrice = this.avgSquarePrice * this.kvm;
       } catch {
         alert(this.errormessage);
       }

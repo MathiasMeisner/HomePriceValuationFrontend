@@ -24,6 +24,13 @@
             <p>{{avgSquarePrice}}</p>
             <p>Gennemsnitlig m2 pris i kommunnen</p>
         </div>
+
+        <input v-model="kvm" placeholder="Kvm" type="number">
+        <button @click="municipalityId=1" v-on:click="calculatePrice">Beregn</button>
+
+        <div class="textblock">      
+            <p>{{calculatedPrice}}</p>
+        </div>
         
     </div>
 
