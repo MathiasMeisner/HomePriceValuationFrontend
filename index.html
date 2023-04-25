@@ -15,22 +15,25 @@
 </head>
 <body>
     <div id="app">
-        <h2>Test - Price Tool</h2>
-
-        <button @click="municipalityId=1" v-on:click="getAvgSquarePrice(municipalityId)" class="btn btn-primary">Frederiksberg</button>
-        <button @click="municipalityId=2" v-on:click="getAvgSquarePrice(municipalityId)" class ="btn btn-primary">Roskilde</button>
-
-        <div class="textblock">      
-            <p>{{avgSquarePrice}}</p>
-            <p>Gennemsnitlig m2 pris i kommunnen</p>
+        <div class="header">
+            <h2>Vælg kommune</h2>
+        </div>
+        
+        <div class="list">
+            <ul>
+                <li>
+                    <button @click="municipalityId=1" v-on:click="inputPage();getAvgSquarePrice(municipalityId);" class="button">Frederiksberg</button>
+                </li>
+                <li>
+                    <button @click="municipalityId=3" v-on:click="inputPage()" class="button">Næstved</button>
+                </li>
+                <li>
+                    <button @click="municipalityId=2" v-on:click="getAvgSquarePrice(municipalityId)" class="button">Roskilde</button>
+                </li>
+            </ul>
         </div>
 
-        <input v-model="kvm" placeholder="Kvm" type="number">
-        <button @click="municipalityId=1" v-on:click="calculatePrice">Beregn</button>
-
-        <div class="textblock">      
-            <p>{{calculatedPrice}}</p>
-        </div>
+        <p>{{avgSquarePrice}}</p>
         
     </div>
 

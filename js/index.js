@@ -17,29 +17,6 @@ Vue.createApp({
     };
   },
 
-  // async created() {
-  //     try {
-  //         const url = baseUrl + "municipality/totalhomesforsale" + "/" + this.municipalityId
-  //         const url2 = baseUrl + "municipality/avgkvmprice" + "/" + this.municipalityId
-  //         response = await axios.get(url)
-  //         response2 = await axios.get(url2)
-  //         this.totalHomesForSale = await response.data
-  //         this.avgSquarePrice = await response2.data
-  //     } catch(ex) {
-  //         alert(ex.message)
-  //     }
-  // },
-
-  // async created() {
-  //     try {
-  //         const url = baseUrl + "municipality/avgkvmprice" + "/" + this.municipalityId
-  //         response = await axios.get(url)
-  //         this.avgSquarePrice = await response.data
-  //     } catch(ex) {
-  //         alert(ex.message)
-  //     }
-  // },
-
   methods: {
     async helperGetAndShow(url) {
       try {

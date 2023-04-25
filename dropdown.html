@@ -14,15 +14,22 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="app">
     <label for="cars">Choose municipality:</label>
 
     <div class="dropdown">
         <button onclick="myFunction()" class="dropbtn">Dropdown</button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="#">Frederiksberg</a>
-          <a href="#">Roskilde</a>
+          <button @click="municipalityId=1" v-on:click="getAvgSquarePrice(municipalityId)" class="btn btn-primary">Frederiksberg</button>
+          <button @click="municipalityId=2" v-on:click="getAvgSquarePrice(municipalityId)" class="btn btn-primary">Roskilde</button>
         </div>
       </div>
+
+        <div class="textblock">      
+        <p>{{avgSquarePrice}}</p>
+        <p>Gennemsnitlig m2 pris i kommunnen</p>
+        </div>
+    </div>
 </body>
 <script>
     /* When the user clicks on the button,
@@ -45,6 +52,6 @@ window.onclick = function(event) {
   }
 }
 </script>
-    
+<script src="js/index.js"></script>  
 </body>
 </html>
