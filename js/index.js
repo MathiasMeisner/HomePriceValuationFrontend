@@ -1,4 +1,4 @@
-const baseUrl = "https://homepricevaluation.azurewebsites.net/";
+const baseUrl = "https://homevaluation.azurewebsites.net/";
 // https://localhost:44376/
 
 Vue.createApp({
@@ -9,7 +9,9 @@ Vue.createApp({
       municipalityId: 0,
       squarePrice: "",
       price: 0,
-      kvm: 0,
+      sqm: "",
+      constructionYear: "",
+      energyLabel: "",
       errormessage: "",
       singleHome: null,
       avgSquarePrice: "",
@@ -20,7 +22,7 @@ Vue.createApp({
   methods: {
     async helperGetAndShow(url) {
       try {
-        const url = baseUrl + "api/prices";
+        const url = baseUrl + "api/homes";
         const response = await axios.get(url);
         this.homes = await response.data;
       } catch (ex) {
@@ -33,7 +35,7 @@ Vue.createApp({
     },
 
     async getById(id) {
-      const url = baseUrl + "api/prices" + "/" + id;
+      const url = baseUrl + "api/homes" + "/" + id;
       this.errormessage = "No such id";
       try {
         response = await axios.get(url);
@@ -44,22 +46,36 @@ Vue.createApp({
     },
 
     async getAvgSquarePrice(municipalityId) {
-      const url = baseUrl + "municipality/avgkvmprice" + "/" + municipalityId;
+      const url = baseUrl + "api/homes/avgsqm" + "/" + municipalityId;
       this.errormessage = "No price data";
       try {
         response = await axios.get(url);
-        this.avgSquarePrice = await response.data;
+        const avgPrice = await response.data;
+        const formattedAvgPrice = avgPrice.toLocaleString("da-DK");
+        this.avgSquarePrice = formattedAvgPrice;
       } catch {
         alert(this.errormessage);
       }
     },
 
     async calculatePrice() {
-      this.errormessage = "No price data";
       try {
-        this.calculatedPrice = this.avgSquarePrice * this.kvm;
-      } catch {
-        alert(this.errormessage);
+        const url = `${baseUrl}/api/homes/singlehome?municipalityId=${this.municipalityId}&squareMeters=${this.sqm}&constructionYear=${this.constructionYear}&energyLabel=${this.energyLabel}`;
+
+        const response = await axios.get(url);
+
+        if (response.status === 200) {
+          const data = response.data;
+          const formattedPrice = data.toLocaleString("da-DK");
+          this.calculatedPrice = formattedPrice;
+        } else {
+          this.errorMessage = "Error calculating price.";
+          alert(this.errorMessage);
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+        this.errorMessage = "An error occurred while calculating price.";
+        alert(this.errorMessage);
       }
     },
   },

@@ -22,17 +22,12 @@
                     <ul>
                         <li>
                             <a href="#2">
-                            <button @click="municipalityId=1" v-on:click="getAvgSquarePrice(municipalityId)" class="button">Frederiksberg</button>
+                            <button @click="municipalityId=1" v-on:click="getAvgSquarePrice(municipalityId)" class="button">Roskilde</button>
                             </a>
                         </li>
                         <li>
                             <a href="#2">
-                            <button @click="municipalityId=3" v-on:click="getAvgSquarePrice(municipalityId)" class="button">Næstved</button>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#2">
-                            <button @click="municipalityId=2" v-on:click="getAvgSquarePrice(municipalityId)" class="button">Roskilde</button>
+                            <button @click="municipalityId=2" v-on:click="getAvgSquarePrice(municipalityId)" class="button">Frederiksberg</button>
                             </a>
                         </li>
                     </ul>
@@ -42,18 +37,20 @@
                 <h2>Gennemsnitlig m² pris for kommunen</h2>
                 <p>{{avgSquarePrice}} kr.</p>
                 <h3>Indtast boligens m²</h3>
-                <input v-model="kvm" placeholder="Kvm" type="number">
+                <input v-model="sqm" placeholder="Kvm" type="number">
+                <input v-model="constructionYear" placeholder="Byggeår" type="number">
+                <input v-model="energyLabel" placeholder="Energimærke" type="text">
                 <div class="list">
-                    <ul>
-                        <li>
-                            <a href="#1"><button class="button">Tilbage</button></a>
-                        </li>
-                        <li>
-                            <a href="#3"><button @click="municipalityId=1" v-on:click="calculatePrice()" class="button">Beregn</button></a> 
-                        </li>
-                    </ul>
+                  <ul>
+                    <li>
+                      <a href="#1"><button class="button">Tilbage</button></a>
+                    </li>
+                    <li>
+                      <a href="#3"><button v-on:click="calculatePrice();getAvgSquarePrice(municipalityId)" class="button">Beregn</button></a>
+                    </li>
+                  </ul>
                 </div>      
-            </div>
+              </div>
             <div class="section" id="3">
                 <h2>Boligens vurdering</h2>
                 <p>{{calculatedPrice}} kr.</p>
